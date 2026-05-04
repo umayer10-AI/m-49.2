@@ -8,7 +8,18 @@ const page = async () => {
 
     return (
         <div>
-            <h2 className='text-2xl font-bold'>About: </h2>
+            <h2 className='text-2xl font-bold'>About: {data.length}</h2>
+            <div className='grid grid-cols-3 gap-5'>
+                {
+                    data.map(v => (
+                        <div key={v.id} className='border p-3 rounded-2xl'>
+                            <h2 className='text-green-400 text-2xl font-bold'>{v.name}</h2>
+                            <h2 className='text-yello-400 text-2xl font-bold'>{v.email}</h2>
+                        </div>
+                    ))
+                }
+                
+            </div>
         </div>
     );
 };
