@@ -17,15 +17,26 @@ import React from 'react';
 const page = () => {
 
     const a = (e) => {
-        e.preventDafault()
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const newUser = Object.fromEntries(formData.entries())
+        console.log(newUser)
+
+        fetch("http://localhost:8000/about",{
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
     }
 
     return (
         <div>
             <Form className="w-full max-w-96" onSubmit={a}>
       <Fieldset>
-        <Fieldset.Legend>Profile Settings</Fieldset.Legend>
-        <Description>Update your profile information.</Description>
+
         <FieldGroup>
           <TextField
             isRequired
@@ -46,21 +57,7 @@ const page = () => {
             <Input placeholder="john@example.com" />
             <FieldError />
           </TextField>
-          <TextField
-            isRequired
-            name="bio"
-            validate={(value) => {
-              if (value.length < 10) {
-                return "Bio must be at least 10 characters";
-              }
-              return null;
-            }}
-          >
-            <Label>Bio</Label>
-            <TextArea placeholder="Tell us about yourself..." />
-            <Description>Minimum 10 characters</Description>
-            <FieldError />
-          </TextField>
+
         </FieldGroup>
         <Fieldset.Actions>
           <Button type="submit">
