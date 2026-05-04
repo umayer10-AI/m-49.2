@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "^3.0.3",
     "@heroui/styles": "^3.0.3",
     "@iconify-json/gravity-ui": "^1.2.12",
