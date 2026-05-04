@@ -12,6 +12,7 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 import React from 'react';
 
 const page = () => {
@@ -31,8 +32,12 @@ const page = () => {
             body: JSON.stringify(newUser)
         })
         
-        const data = awaitres.json()
+        const data = await res.json()
         console.log(data)
+        if(data.success){
+            alert("Data create Successfully")
+            redirect("/about")
+        }
 
     }
 
